@@ -1,0 +1,43 @@
+{
+  "menu": [
+    {
+      "id": "1",
+      "uri": "/",
+      "title": "Dashboard",
+      "parent": 0,
+      "expand": false,
+      "node": null
+    },
+    {
+      "id": "2",
+      "uri": false,
+      "title": "Exam",
+      "parent": true,
+      "expand": false,
+      "node": [
+        {
+          "id": 21,
+          "uri": "/ielts",
+          "title": "Ielts Test",
+          "parent": 0,
+          "expand": false
+        },
+        {
+          "id": 22,
+          "uri": "/mock",
+          "title": "Mock Test",
+          "parent": 0,
+          "expand": false
+        }
+      ]
+    },
+    {
+      "id": "200",
+      "uri": "/logout",
+      "title": "Logout",
+      "parent": 0,
+      "expand": false,
+      "node": null
+    }
+  ]
+}
