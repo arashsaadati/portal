@@ -1,17 +1,12 @@
 <template>
 	<div id="grid-view-model">
-		<form id="search">
-			Search
-			<input name="query" v-model="searchQuery">
-		</form>
-
-		<grid :data="this.gridData" :columns="this.gridColumns" />
-
-		<div id="page-navigation">
+		<div id="page-navigation" v-if="this.gridCount > 0">
 			<button @click=movePages(-1)>Back</button>
-			<p>{{startRow / rowsPerPage + 1}} out of {{gridData.length / rowsPerPage}}</p>
+			<p>{{startRow / rowsPerPage + 1}} out of {{ Math.ceil(gridCount / rowsPerPage) }}</p>
 			<button @click=movePages(1)>Next</button>
 		</div>
+
+		<grid :data="this.gridData" :count="this.gridCount" :columns="this.gridCol" :size="this.gridSize" @gridRowClicked="handelGridRowClick" />
 	</div>
 </template>
 
@@ -20,39 +15,34 @@ import Grid from "./Grid.vue";
 
 export default {
 	components: { Grid },
+	props: [ 'gridData','gridCol','gridSize', 'gridCount' ],
 	data() {
 		return {
 			searchQuery: '',
-			gridColumns: ['name', 'power'],
 			startRow: 0,
-			rowsPerPage: 10,
-			gridData: [{
-					name: 'Chuck Norris',
-					power: Infinity
-				}, 
-				{
-					name: 'Bruce Lee',
-					power: 9000
-				}, {
-					name: 'Jackie Chan',
-					power: 7000
-				}, {
-					name: 'Jet Li',
-					power: 8000
-			}]
+			rowsPerPage: 25,
+			curPage : 1
 		}
   	},
 	methods: {
-		movePages: function(amount) {
-				var newStartRow = this.startRow + (amount * this.rowsPerPage);
-				if (newStartRow >= 0 && newStartRow < gridData.length) {
-					this.startRow = newStartRow;
+		handelGridRowClick(data) {
+			this.$emit('rowClick', data)
+		},
+		movePages(amount) {
+			var newStartRow = this.startRow + (amount * this.rowsPerPage);
+			if (newStartRow >= 0 && newStartRow < this.gridCount) {
+				this.startRow = newStartRow;
+				if (this.curPage > 0 && this.curPage < this.gridCount) {
+					if (amount > 0) this.curPage++;
+					else this.curPage--;
+					this.$emit('tablePaging', this.curPage);
 				}
 			}
-		},
-		filters: {
-			orderByBusinessRules: function(data) {
-				return data.slice().sort(function(a, b) {
+		}
+	},
+	filters: {
+		orderByBusinessRules: function(data) {
+			return data.slice().sort(function(a, b) {
 				return a.power - b.power;
 			});
 		}
@@ -61,10 +51,7 @@ export default {
 </script>
 
 <style scoped>
-	table { border: 2px solid #42b983;border-radius: 3px;background-color: #fff; }
-	th { background-color: #42b983;color: rgba(255, 255, 255, 0.66);cursor: pointer;-user-select: none; }
-	td { background-color: #f9f9f9; }
-	th, td { min-width: 120px;padding: 10px 20px; }
+	#grid-view-model { padding: 10px; }
 	#search { margin-bottom: 10px; }
 	#page-navigation { display: flex;margin-top: 5px; }
 	#page-navigation p { margin-left: 5px;margin-right: 5px; }

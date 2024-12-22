@@ -11,6 +11,16 @@ const routes = [
         path: '/ielts',
         name: 'ielts',
         component: () => import(/* webpackChunkName: "ielts" */ '../views/IeltsTest.vue')
+    },
+    {
+        path: '/ielts/id',
+        name: 'manageTest',
+        component: () => import(/* webpackChunkName: "manageTest" */ '../views/manageTest.vue')
+    },
+    {
+        path: '/mock',
+        name: 'mock',
+        component: () => import(/* webpackChunkName: "mock" */ '../views/MockExam.vue')
     }
 ]
 
