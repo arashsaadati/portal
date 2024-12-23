@@ -1,9 +1,9 @@
 <template>
 	<div id="grid-view-model">
 		<div id="page-navigation" v-if="this.gridCount > 0">
-			<button @click=movePages(-1)>Back</button>
-			<p>{{startRow / rowsPerPage + 1}} out of {{ Math.ceil(gridCount / rowsPerPage) }}</p>
-			<button @click=movePages(1)>Next</button>
+			<button class="btn" :class="(curPage > 1) ? 'info2' : 'disabled'" @click=movePages(-1)>Back</button>
+			<p>{{ Math.ceil(startRow / rowsPerPage + 1) }} of {{ Math.ceil(gridCount / rowsPerPage) }}</p>
+			<button class="btn" :class="(curPage < Math.ceil(gridCount / rowsPerPage)) ? 'info2' : 'disabled'" @click=movePages(1)>Next</button>
 		</div>
 
 		<grid :data="this.gridData" :count="this.gridCount" :columns="this.gridCol" :size="this.gridSize" @gridRowClicked="handelGridRowClick" />
@@ -15,13 +15,13 @@ import Grid from "./Grid.vue";
 
 export default {
 	components: { Grid },
-	props: [ 'gridData','gridCol','gridSize', 'gridCount' ],
+	props: [ 'gridData','gridCol','gridSize','gridCount','gridCurPage','gridStartRow','gridRowCount' ],
 	data() {
 		return {
 			searchQuery: '',
-			startRow: 0,
-			rowsPerPage: 25,
-			curPage : 1
+			startRow: this.gridStartRow,
+			rowsPerPage: this.gridRowCount,
+			curPage : this.gridCurPage
 		}
   	},
 	methods: {
@@ -40,6 +40,9 @@ export default {
 			}
 		}
 	},
+	computed() {
+		console.log(1)
+	},
 	filters: {
 		orderByBusinessRules: function(data) {
 			return data.slice().sort(function(a, b) {
@@ -53,7 +56,7 @@ export default {
 <style scoped>
 	#grid-view-model { padding: 10px; }
 	#search { margin-bottom: 10px; }
-	#page-navigation { display: flex;margin-top: 5px; }
+	#page-navigation { display: flex;margin-bottom: 18px;align-items: center;margin-left: auto;justify-content: flex-end; }
 	#page-navigation p { margin-left: 5px;margin-right: 5px; }
 	#page-navigation button { background-color: #42b983;border-color: #42b983;color: rgba(255, 255, 255, 0.66); }
 </style>

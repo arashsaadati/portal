@@ -35,7 +35,7 @@ export default {
 </script>
 
 <style>
-	#app { font-family: "JetBrains Mono", serif;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;text-align: center;color: #2c3e50;display:flex; font-size: 13px; }
+	#app { font-family: "DM Sans", serif;;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;text-align: center;color: #2c3e50;display:flex; font-size: 13px; }
 
 	main { flex: 1 1 auto;background-color: whitesmoke; overflow: auto; height: 100vh; }
 	aside { flex: 0 0 auto;width: 250px;height: 100vh; }

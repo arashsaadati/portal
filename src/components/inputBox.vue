@@ -1,16 +1,17 @@
 <template>
-    <div class="fobject">
-        <span class="label" v-if="this.inputLabel">{{ this.inputLabel }}</span>
-        <input :v-model="inputName" :type="inputType" :value="inputValue">
+    <div class="fobject" :class="inputClass">
+        <span class="title" v-if="this.inputLabel">{{ this.inputLabel }}</span>
+        <input @change="BroadcastValue" @keyup="BroadcastValue" :type="inputType" :value="inputValue">
     </div>
 </template>
 
 <script>
 export default {
-    props: [ 'inputValue','inputLabel','inputName','inputType' ]
+    props: [ 'inputValue','inputLabel','inputName','inputType','inputClass' ],
+	methods: {
+		BroadcastValue(e) {
+			this.$emit('ValueBrodcaster', [e.target.value, this.inputName])
+		}
+	}
 }
 </script>
-
-<style>
-
-</style>

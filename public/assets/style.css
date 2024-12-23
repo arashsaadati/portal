@@ -1,9 +1,109 @@
-select,
-input {
-    padding: 7px;
-    padding-right: 20px;
-    padding-left: 20px;
-    border-radius: 3px;
-    -webkit-box-shadow: 0 0 0 30px white inset !important;
-    border: 1px solid silver;
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+.searchbox { background-color: #fff; display: flex; padding: 10px 20px; margin: 10px; border-radius: 5px; }
+.panel { background-color: #fff; display: flex; padding: 10px 20px; margin: 10px; border-radius: 5px; }
+
+
+.btn:not(b) {border: none;border-radius: 3px !important;text-align: center;height:35px;justify-content: center;align-items: center;padding: 1px 11px 0px !important;margin: 0 2px;cursor: pointer;font-size: 13px !important;transition: background-color 100ms linear, border-color 100ms linear, color 100ms linear, box-shadow 100ms linear;background-color: #fff !important;display: inline-flex; line-height: inherit; white-space: nowrap;}
+.btn:not(b) + i {background-color: #fff !important;border-color: #e2e2e2 !important;color: currentColor !important;height: 100%;display: inline-flex;justify-content: center;align-items: center;cursor: pointer; border-radius: 4px 0 0 4px;margin-right: -5px;border-right: 1px solid;padding: 0 2px;}
+.btn:not(b) + i:hover,
+.btn:not(b):hover,
+.btn:not(b):focus {background-color: #f0f0f0 !important;border-color: #e3e3e3 !important;color: #2e2e2e !important;}
+
+.btn i.icon {display: flex;justify-content: center;align-items: center;margin-left: 10px;margin-top: -1px;}
+
+.btn_loading {display: inline-flex}
+.btn_loading,
+.btn.loading {position: relative;opacity: 0.5}
+.btn_loading:after,
+.btn.loading:after {content: '';display: block;position: absolute;top: 50%;left: 50%;height: 16px;width: 16px;margin: -8px 0 0 -8px;border: 2px rgb(255 255 255 / 25%) solid;border-top: 2px #000 solid;border-radius: 50%;-webkit-animation: spin .5s infinite linear;animation: spin .5s infinite linear; z-index: 2}
+
+@keyframes spin {
+	from {-webkit-transform: rotate(0deg);transform: rotate(0deg);-webkit-transform: rotate(0deg);transform: rotate(0deg);}
+	to {-webkit-transform: rotate(359deg);transform: rotate(359deg);-webkit-transform: rotate(359deg);transform: rotate(359deg);}
 }
+
+.btn[mticon],
+.btn[mticono] {font-size: 19px !important;padding-left: 5px !important;padding-right: 5px !important;}
+.btn > [mticon],
+.btn > [mticono] {margin-right: 5px;width: 18px;height: 18px;margin-left: -5px;display: flex;justify-content: center;align-items: center;margin-top: -3px;}
+.detail_holder .btn > [mticon],
+.detail_holder .btn > [mticono] {margin-right: -5px}
+
+.btn.clean + i,
+.btn.clean {background-color: transparent !important;border-color: transparent !important;color: #676767 !important;}
+.btn.clean + i:hover,
+.btn.clean:hover,
+.btn.clean:focus {background-color: transparent !important;border-color: transparent !important;color: #2e2e2e !important;}
+
+.btn.alert + i,
+.btn.alert {background-color: #db3b21 !important;border-color: #c0341d !important;color: #fff !important;}
+.btn.alert + i:hover,
+.btn.alert:hover,
+.btn.alert:focus {background-color: #c0341d !important;border-color: #a62d19 !important;color: #fff !important;}
+
+.btn.info + i,
+.btn.info {background-color: #1f78d1 !important;border-color: #1b69b6 !important;color: #fff !important;}
+.btn.info + i:hover,
+.btn.info:hover,
+.btn.info:focus {background-color: #1b69b6 !important;border-color: #1b69b6 !important;color: #fff !important;}
+
+.btn.info2 + i,
+.btn.info2 {background-color: #5396da !important;border-color: #457aaf !important;color: #fff !important;}
+.btn.info2 + i:hover,
+.btn.info2:hover,
+.btn.info2:focus {background-color: #457aaf !important;border-color: #457aaf !important;color: #fff !important;}
+
+.btn.success + i,
+.btn.success {background-color: #1aaa55 !important;border-color: #168f48 !important;color: #fff !important;}
+.btn.success + i:hover,
+.btn.success:hover,
+.btn.success:focus {background-color: #168f48 !important;border-color: #12753a !important;color: #fff !important;}
+
+.btn.warning + i,
+.btn.warning {background-color: #fc9403 !important;border-color: #de7e00 !important;color: #fff !important;}
+.btn.warning + i:hover,
+.btn.warning:hover,
+.btn.warning:focus {background-color: #de7e00 !important;border-color: #c26700 !important;color: #fff !important;}
+
+.btn.hazard + i,
+.btn.hazard {background-color: #59b4bd !important;border-color: #489aa2 !important;color: #fff !important;}
+.btn.hazard + i:hover,
+.btn.hazard:hover,
+.btn.hazard:focus {background-color: #4999a1 !important;border-color: #489aa2 !important;color: #fff !important;}
+
+.btn.darkgoldenrod + i,
+.btn.darkgoldenrod {background-color: darkgoldenrod !important;border-color: #795600 !important;color: #fff !important;}
+.btn.darkgoldenrod + i:hover,
+.btn.darkgoldenrod:hover,
+.btn.darkgoldenrod:focus {background-color: #795600 !important;border-color: #795600 !important;color: #fff !important;}
+
+.btn.darkgoldenrod2 + i,
+.btn.darkgoldenrod2 {background-color: #795600 !important;border-color: darkgoldenrod !important;color: #fff !important;}
+.btn.darkgoldenrod2 + i:hover,
+.btn.darkgoldenrod2:hover,
+.btn.darkgoldenrod2:focus {background-color: darkgoldenrod !important;border-color: darkgoldenrod !important;color: #fff !important;}
+
+.btn.cyan + i,
+.btn.cyan {background-color: #1aaaa3 !important;border-color: #0a8b84 !important;color: #fff !important; cursor: default !important;}
+.btn.cyan + i:hover,
+.btn.cyan:hover,
+.btn.cyan:focus {background-color: #1aaaa3 !important;border-color: #0a8b84 !important;color: #fff !important;}
+
+.btn.disabled + i,
+.btn.disabled {background-color: #dfdfdf !important;border-color: #545454 !important;color: #a0a09b !important; cursor: default !important;}
+.btn.disabled + i:hover,
+.btn.disabled:hover,
+.btn.disabled:focus {background-color: #dfdfdf !important;border-color: #545454 !important;color: #a0a09b !important;}
+
+.btn.bluegreen + i,
+.btn.bluegreen {background-color: #00ebb5 !important;border-color: #00a981 !important;color: #066851 !important;}
+.btn.bluegreen + i:hover,
+.btn.bluegreen:hover,
+.btn.bluegreen:focus {background-color: #00a981 !important;border-color: #00a981 !important;color: #fff !important;}
+
+.btn.black + i,
+.btn.black { background-color: #353535 !important;border-color: #0e0e0e !important;color: #ffffff !important;}
+.btn.black + i:hover,
+.btn.black:hover,
+.btn.black:focus {background-color: #0e0e0e !important;border-color: #0e0e0e !important;color: #fff !important;}
